@@ -5,11 +5,16 @@ import './app.scss';
 import img from "./got.jpeg";
 
 
+
 export default class App extends Component {
+
 
 	render() {
 
+
+
 		return (
+
 			<>
 				<Header />
 				<main className="page">
