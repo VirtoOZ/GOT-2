@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Header from "../header/header.jsx";
 import RandChar from "../randChar/randChar.jsx";
+import DetalesChar from "../detalesChar/detalesChar.jsx";
+import ItemList from "../itemList/itemList.jsx";
 import './app.scss';
 import img from "./got.jpeg";
 
@@ -11,10 +13,7 @@ export default class App extends Component {
 
 	render() {
 
-
-
 		return (
-
 			<>
 				<Header />
 				<main className="page">

@@ -11,6 +11,7 @@ export default class GotService {
 		return result.json();
 	}
 
+	// Персонажи:
 	async getCharacter(id) {
 		const char = await this.getResurce(`${this._ApiBase}/characters/${id}`);
 		return this._transformCharacter(char);
@@ -18,8 +19,31 @@ export default class GotService {
 
 	async getAllCharacters() {
 		const char = await this.getResurce(`${this._ApiBase}/characters?page=2&pageSize=10`);
-		return this._transformCharacter(char);
+		return char.map(this._transformCharacter);
 	}
+
+	// Книги:
+	async getBook(id) {
+		const book = await this.getResurce(`${this._ApiBase}/books/${id}`);
+		return this._transformBook(book);
+	}
+
+	async getAllBooks() {
+		const books = await this.getResurce(`${this._ApiBase}/books?page=1&pageSize=10`);
+		return books.map(this._transformBook);
+	}
+
+	// Дома:
+	async getHouse(id) {
+		const house = await this.getResurce(`${this._ApiBase}/houses/${id}`);
+		return this._transformHouses(house);
+	}
+
+	async getAllHouses() {
+		const houses = await this.getResurce(`${this._ApiBase}/houses?page=1&pageSize=10`);
+		return houses.map(this._transformHouses);
+	}
+
 
 	_transformCharacter(char) {
 		return {
@@ -28,6 +52,25 @@ export default class GotService {
 			born: char.born ? char.born : 'no data',
 			died: char.died ? char.died : 'no data',
 			culture: char.culture ? char.culture : 'no data',
+		}
+	}
+
+	_transformBook(book) {
+		return {
+			name: book.name ? book.name : 'no data',
+			authors: book.authors ? book.authors : 'no data',
+			country: book.country ? book.country : 'no data',
+			numberOfPages: book.numberOfPages ? book.numberOfPages : 'no data',
+			mediaType: book.mediaType ? book.mediaType : 'no data',
+		}
+	}
+
+	_transformHouses(house) {
+		return {
+			name: house.name ? house.name : 'no data',
+			region: house.region ? house.region : 'no data',
+			words: house.words ? house.words : 'no data',
+			coatOfArms: house.coatOfArms ? house.coatOfArms : 'no data',
 		}
 	}
 
