@@ -17,15 +17,6 @@
 	// .random-char__list
 	&__list {
 		flex: 0 1 45%;
-		background-color: #fff;
-		border-radius: rem(7);
-		transition: box-shadow 0.3s ease 0s;
-		padding: rem(30);
-		@media (any-hover: hover) {
-			&:hover {
-				box-shadow: 0 0 rem(15) rgba(255, 255, 255, 1);
-			}
-		}
 	}
 	// .random-char__item
 	&__item {

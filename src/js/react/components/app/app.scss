@@ -6,16 +6,13 @@
 @import "../../../../scss/base/mixins";
 //</MIXINS>=================================
 
-[class*="__container"] {
-	max-width: 1100px;
-	box-sizing: content-box;
-	margin: 0 auto;
-}
 .page {
 	// .page__section
 	&__section {
+		flex: 0 1 50%;
 		position: relative;
 		z-index: 2;
+		padding: rem(15) 0;
 	}
 	// .page__bg
 	&__bg {
@@ -30,7 +27,22 @@
 	}
 }
 
+.section {
+	// .section__box
+	&___box {
+	}
+	// .section__container
+	&__container {
+		display: flex;
+		gap: 30px;
+	}
+}
+
 .list {
+	background-color: #fff;
+	border-radius: rem(7);
+	transition: box-shadow 0.3s ease 0s;
+	padding: rem(20);
 	& > :not(:last-child) {
 		position: relative;
 		&::after {
@@ -42,6 +54,11 @@
 			position: absolute;
 			bottom: 0;
 			left: 0;
+		}
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			box-shadow: 0 0 rem(15) rgba(255, 255, 255, 1);
 		}
 	}
 	// .list__item
@@ -57,18 +74,39 @@
 		padding: rem(10) rem(10);
 		span {
 			padding-left: rem(5);
-			font-size: rem(25);
+			font-size: rem(22);
 		}
 	}
 	// .list__label
 	&__label {
 		font-weight: 800;
-		font-size: rem(20);
+		font-size: rem(18);
 	}
 	// .list__value
 	&__value {
 		color: #083600;
 		font-weight: 500;
-		font-size: rem(20);
+		font-size: rem(18);
+	}
+}
+
+.togle__btn {
+	padding: rem(8) rem(30);
+	background-color: blue;
+	border-radius: rem(10);
+	border: 1px solid #000;
+	color: #fff;
+	position: relative;
+	z-index: 2;
+	font-size: rem(20);
+	font-weight: 700;
+	transition:
+		transform 0.3s ease 0s,
+		box-shadow 0.3s ease 0s;
+	@media (any-hover: hover) {
+		&:hover {
+			transform: translate(0, 1px);
+			box-shadow: 0 0 rem(15) blue;
+		}
 	}
 }

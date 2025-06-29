@@ -6,8 +6,8 @@ import ErrorMessage from "../errorMessage/errormessage.jsx";
 
 export default class RandChar extends Component {
 
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.id = Math.floor(Math.random() * 140 + 25); //25-140
 	}
 
@@ -15,11 +15,11 @@ export default class RandChar extends Component {
 		data: {},
 		loading: true,
 		error: false,
+		onHide: false,
 	}
 
 	updateData = this.updateData.bind(this);
 	onError = this.onError.bind(this);
-
 	getService = new GotService();
 
 	componentDidMount() {
@@ -55,7 +55,7 @@ export default class RandChar extends Component {
 
 	render() {
 		const id = this.id;
-		console.log(id);
+		// console.log(id);
 		const { data, loading, error } = this.state;
 		const content = !(loading || error) ? <View data={data} id={id} /> : null;
 		const spinner = loading ? <Spinner /> : null;
