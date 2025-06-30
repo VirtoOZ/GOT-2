@@ -15,18 +15,23 @@ export default class RandChar extends Component {
 		data: {},
 		loading: true,
 		error: false,
-		onHide: false,
 	}
 
 	updateData = this.updateData.bind(this);
 	onError = this.onError.bind(this);
+
 	getService = new GotService();
 
 	componentDidMount() {
 		this.updateCharacter();
+		this.timerId = setInterval(this.updateCharacter, 1500);
 	}
 
-	updateCharacter() {
+	componentWillUnmount() {
+		clearInterval(this.timerId);
+	}
+
+	updateCharacter = () => {
 		this.getService.getCharacter(this.id)
 			.then(this.updateData)
 			.catch(this.onError);
@@ -37,7 +42,6 @@ export default class RandChar extends Component {
 			data,
 			loading: false,
 		});
-		// console.log(this.state);
 	}
 
 	// class filds современная запись(без бинд)
@@ -55,7 +59,6 @@ export default class RandChar extends Component {
 
 	render() {
 		const id = this.id;
-		// console.log(id);
 		const { data, loading, error } = this.state;
 		const content = !(loading || error) ? <View data={data} id={id} /> : null;
 		const spinner = loading ? <Spinner /> : null;
@@ -64,9 +67,9 @@ export default class RandChar extends Component {
 			<section className="random-char random-char__section page__section">
 				<div className="random-char__container">
 					<ul className="random-char__list list">
-						{errorMessage}
+						{/* {errorMessage} */}
 						{spinner}
-						{content}
+						{/* {content} */}
 					</ul>
 				</div>
 			</section>

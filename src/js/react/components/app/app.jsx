@@ -9,25 +9,22 @@ import img from "./got.jpeg";
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.onHideRandomChar = this.onHideRandomChar.bind(this);
-	}
-
-	onHideRandomChar() {
-		return !onHide;
+		this.state = { onHide: false };
 	}
 
 	render() {
-
+		const { onHide } = this.state;
+		const randomBlock = onHide ? <></> : <RandChar />;
 		return (
 			<>
 				<Header />
 				<main className="page">
-					<RandChar onHide={onHide} />
+					{randomBlock}
 					<div className="page__section">
 						<div className="section__container">
 							<button
 								className="togle__btn"
-							// onClick={onHideRandomChar}
+								onClick={() => this.setState({ onHide: !onHide })}
 							>
 								Togle
 							</button>
