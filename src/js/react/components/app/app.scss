@@ -71,11 +71,9 @@
 	&__title {
 		display: flex;
 		justify-content: center;
-		padding: rem(10) rem(10);
-		span {
-			padding-left: rem(5);
-			font-size: rem(22);
-		}
+		padding: rem(5) rem(10);
+		// padding-left: rem(5);
+		font-size: rem(22);
 	}
 	// .list__label
 	&__label {

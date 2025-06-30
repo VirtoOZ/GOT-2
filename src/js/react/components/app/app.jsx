@@ -7,14 +7,18 @@ import './app.scss';
 import img from "./got.jpeg";
 
 export default class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { onHide: false };
-	}
+
+	state = {
+		onHide: false,
+		selectedChar: 130,
+	};
+
+	onCharSelected = (id) => this.setState({ selectedChar: id });
 
 	render() {
-		const { onHide } = this.state;
+		const { onHide, selectedChar } = this.state;
 		const randomBlock = onHide ? <></> : <RandChar />;
+
 		return (
 			<>
 				<Header />
@@ -25,15 +29,13 @@ export default class App extends Component {
 							<button
 								className="togle__btn"
 								onClick={() => this.setState({ onHide: !onHide })}
-							>
-								Togle
-							</button>
+							>Togle</button>
 						</div>
 					</div>
 					<div className="section__box">
 						<div className="section__container">
-							<ItemList />
-							<DetalesChar />
+							<ItemList onCharSelected={() => this.onCharSelected()} />
+							<DetalesChar charId={selectedChar} />
 						</div>
 					</div>
 					<div className="page__bg">

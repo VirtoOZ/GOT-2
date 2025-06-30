@@ -67,9 +67,9 @@ export default class RandChar extends Component {
 			<section className="random-char random-char__section page__section">
 				<div className="random-char__container">
 					<ul className="random-char__list list">
-						{/* {errorMessage} */}
+						{errorMessage}
 						{spinner}
-						{/* {content} */}
+						{content}
 					</ul>
 				</div>
 			</section>

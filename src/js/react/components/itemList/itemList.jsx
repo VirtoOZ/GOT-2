@@ -5,12 +5,11 @@ import Spinner from "../spinner/spinner.jsx";
 
 export default class ItemList extends Component {
 
-	getService = new GotService();
+	gotService = new GotService();
 	state = { characterList: null };
 
 	componentDidMount() {
-		console.log(this.state);
-		this.getService.getAllCharacters()
+		this.gotService.getAllCharacters()
 			.then((characterList) => {
 				this.setState({ characterList })
 			});
@@ -18,11 +17,12 @@ export default class ItemList extends Component {
 
 	renderItemList(arr) {
 		return arr.map((item, index) => {
+			const { onCharSelected } = this.props;
 			return (
 				<li
 					key={index}
 					className="list-char__title list__title"
-				>
+					onClick={() => onCharSelected(index)}>
 					<span
 						className="list-char__label list__label">
 						{item.name}
@@ -42,13 +42,11 @@ export default class ItemList extends Component {
 		const itemList = this.renderItemList(characterList);
 
 		return (
-			<>
-				<section className="list-char list-char__section page__section">
-					<ul className="list-char__list list">
-						{itemList}
-					</ul>
-				</section>
-			</>
+			<section className="list-char list-char__section page__section">
+				<ul className="list-char__list list">
+					{itemList}
+				</ul>
+			</section>
 		)
 	}
 }
