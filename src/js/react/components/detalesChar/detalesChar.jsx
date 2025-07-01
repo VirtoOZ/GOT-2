@@ -9,6 +9,8 @@ export default class DetalesChar extends Component {
 
 	componentDidMount() {
 		this.onUpdateChar();
+
+		console.log(this.props.charId);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -24,10 +26,12 @@ export default class DetalesChar extends Component {
 		}
 		this.gotService.getCharacter(charId)
 			.then((character) => this.setState({ character }));
+		this.foo.bar = 0;
 	}
 
 	render() {
-		if (!this.state.character) {
+		const { character } = this.state;
+		if (!character) {
 			return (
 				<section className="detales-char detales-char__section page__section">
 					<div className="detales-char__list list">

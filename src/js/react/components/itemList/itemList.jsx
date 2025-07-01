@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GotService from "../../services/gotService.jsx";
 import Spinner from "../spinner/spinner.jsx";
-
+import "./itemList.scss"
 
 export default class ItemList extends Component {
 
@@ -22,7 +22,7 @@ export default class ItemList extends Component {
 				<li
 					key={index}
 					className="list-char__title list__title"
-					onClick={() => onCharSelected(index)}>
+					onClick={() => onCharSelected(41 + index)}>
 					<span
 						className="list-char__label list__label">
 						{item.name}
@@ -34,12 +34,7 @@ export default class ItemList extends Component {
 
 	render() {
 		const { characterList } = this.state;
-
-		if (!characterList) {
-			return <Spinner />
-		}
-
-		const itemList = this.renderItemList(characterList);
+		const itemList = !characterList ? <Spinner /> : this.renderItemList(characterList);
 
 		return (
 			<section className="list-char list-char__section page__section">

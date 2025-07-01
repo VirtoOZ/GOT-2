@@ -14,11 +14,11 @@ export default class GotService {
 	// Персонажи:
 	async getCharacter(id) {
 		const char = await this.getResurce(`${this._ApiBase}/characters/${id}`);
-		return this._transformCharacter(char);
+		return this._transformCharacter(char, id);
 	}
 
 	async getAllCharacters() {
-		const char = await this.getResurce(`${this._ApiBase}/characters?page=3&pageSize=10`);
+		const char = await this.getResurce(`${this._ApiBase}/characters?page=5&pageSize=10`);
 		return char.map(this._transformCharacter);
 	}
 
@@ -45,13 +45,14 @@ export default class GotService {
 	}
 
 
-	_transformCharacter(char) {
+	_transformCharacter(char, index) {
 		return {
 			name: char.name ? char.name : 'no data',
 			gender: char.gender ? char.gender : 'no data',
 			born: char.born ? char.born : 'no data',
 			died: char.died ? char.died : 'no data',
 			culture: char.culture ? char.culture : 'no data',
+			id: index,
 		}
 	}
 

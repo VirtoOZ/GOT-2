@@ -5,17 +5,30 @@ import DetalesChar from "../detalesChar/detalesChar.jsx";
 import ItemList from "../itemList/itemList.jsx";
 import './app.scss';
 import img from "./got.jpeg";
+import ErrorMessage from "../errorMessage/errormessage.jsx";
+
 
 export default class App extends Component {
 
 	state = {
 		onHide: false,
 		selectedChar: 130,
+		error: false,
 	};
 
-	onCharSelected = (id) => this.setState({ selectedChar: id });
+	componentDidCatch() {
+		console.log('error');
+		this.setState({ error: true });
+	}
+	onCharSelected = (id) => {
+		this.setState({ selectedChar: id })
+		// console.log(this.state);
+	};
 
 	render() {
+		if (this.state.error) {
+			return <ErrorMessage />
+		}
 		const { onHide, selectedChar } = this.state;
 		const randomBlock = onHide ? <></> : <RandChar />;
 
@@ -34,7 +47,7 @@ export default class App extends Component {
 					</div>
 					<div className="section__box">
 						<div className="section__container">
-							<ItemList onCharSelected={() => this.onCharSelected()} />
+							<ItemList onCharSelected={this.onCharSelected} />
 							<DetalesChar charId={selectedChar} />
 						</div>
 					</div>

@@ -6,25 +6,18 @@ import ErrorMessage from "../errorMessage/errormessage.jsx";
 
 export default class RandChar extends Component {
 
-	constructor(props) {
-		super(props)
-		this.id = Math.floor(Math.random() * 140 + 25); //25-140
-	}
-
 	state = {
 		data: {},
 		loading: true,
 		error: false,
+		id: null,
 	}
 
-	updateData = this.updateData.bind(this);
-	onError = this.onError.bind(this);
-
-	getService = new GotService();
+	gotService = new GotService();
 
 	componentDidMount() {
 		this.updateCharacter();
-		this.timerId = setInterval(this.updateCharacter, 1500);
+		// this.timerId = setInterval(this.updateCharacter, 4000);
 	}
 
 	componentWillUnmount() {
@@ -32,15 +25,19 @@ export default class RandChar extends Component {
 	}
 
 	updateCharacter = () => {
-		this.getService.getCharacter(this.id)
+		console.log('update');
+		const id = Math.floor(Math.random() * 140 + 25); //25-140
+		this.gotService.getCharacter(id)
 			.then(this.updateData)
 			.catch(this.onError);
+
 	}
 
-	updateData(data) {
+	updateData = (data) => {
 		this.setState({
 			data,
 			loading: false,
+			id: data.id
 		});
 	}
 
@@ -50,7 +47,7 @@ export default class RandChar extends Component {
 	// 	console.log(this.state);
 	// }
 
-	onError(err) {
+	onError = (err) => {
 		this.setState({
 			loading: false,
 			error: true,
@@ -58,8 +55,7 @@ export default class RandChar extends Component {
 	}
 
 	render() {
-		const id = this.id;
-		const { data, loading, error } = this.state;
+		const { data, loading, error, id } = this.state;
 		const content = !(loading || error) ? <View data={data} id={id} /> : null;
 		const spinner = loading ? <Spinner /> : null;
 		const errorMessage = error ? <ErrorMessage /> : null;
