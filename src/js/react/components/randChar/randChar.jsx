@@ -25,7 +25,7 @@ export default class RandChar extends Component {
 	}
 
 	updateCharacter = () => {
-		console.log('update');
+		// console.log('update');
 		const id = Math.floor(Math.random() * 140 + 25); //25-140
 		this.gotService.getCharacter(id)
 			.then(this.updateData)

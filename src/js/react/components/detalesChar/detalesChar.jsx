@@ -10,7 +10,7 @@ export default class DetalesChar extends Component {
 	componentDidMount() {
 		this.onUpdateChar();
 
-		console.log(this.props.charId);
+		// console.log(this.props.charId);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -26,7 +26,7 @@ export default class DetalesChar extends Component {
 		}
 		this.gotService.getCharacter(charId)
 			.then((character) => this.setState({ character }));
-		this.foo.bar = 0;
+		// this.foo.bar = 0;
 	}
 
 	render() {

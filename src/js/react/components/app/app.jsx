@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import Header from "../header/header.jsx";
 import RandChar from "../randChar/randChar.jsx";
-import DetalesChar from "../detalesChar/detalesChar.jsx";
-import ItemList from "../itemList/itemList.jsx";
+import CharacterPage from "../characterPage/characterPage.jsx";
 import './app.scss';
 import img from "./got.jpeg";
 import ErrorMessage from "../errorMessage/errormessage.jsx";
-
+import DetalesChar from "../detalesChar/detalesChar.jsx";
+import ItemList from "../itemList/itemList.jsx";
+import GotService from "../../services/gotService.jsx";
 
 export default class App extends Component {
+
+	gotService = new GotService();
 
 	state = {
 		onHide: false,
@@ -17,19 +20,15 @@ export default class App extends Component {
 	};
 
 	componentDidCatch() {
-		console.log('error');
+		// console.log('error');
 		this.setState({ error: true });
 	}
-	onCharSelected = (id) => {
-		this.setState({ selectedChar: id })
-		// console.log(this.state);
-	};
 
 	render() {
 		if (this.state.error) {
 			return <ErrorMessage />
 		}
-		const { onHide, selectedChar } = this.state;
+		const { onHide } = this.state;
 		const randomBlock = onHide ? <></> : <RandChar />;
 
 		return (
@@ -47,8 +46,32 @@ export default class App extends Component {
 					</div>
 					<div className="section__box">
 						<div className="section__container">
-							<ItemList onCharSelected={this.onCharSelected} />
-							<DetalesChar charId={selectedChar} />
+							<CharacterPage />
+						</div>
+					</div>
+					<div className="section__box">
+						<div className="section__container">
+							<ItemList
+								onCharSelected={this.onCharSelected}
+								getData={this.gotService.getAllBooks}
+								renderItem={(item) => item.name}
+
+							/>
+							<DetalesChar
+								charId={this.state.selectedChar}
+							/>
+						</div>
+					</div>
+					<div className="section__box">
+						<div className="section__container">
+							<ItemList
+								onCharSelected={this.onCharSelected}
+								getData={this.gotService.getAllHouses}
+								renderItem={(item) => item.name}
+							/>
+							<DetalesChar
+								charId={this.state.selectedChar}
+							/>
 						</div>
 					</div>
 					<div className="page__bg">

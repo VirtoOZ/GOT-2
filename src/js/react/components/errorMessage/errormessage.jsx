@@ -6,7 +6,7 @@ function ErrorMessage() {
 	return (
 		<>
 			<img className="wrong__image" src={Img} alt=""></img>
-			<div className="wrong__text">Somthin goes wrong...</div>
+			<div className="wrong__text">Something goes wrong...</div>
 		</>
 	);
 }

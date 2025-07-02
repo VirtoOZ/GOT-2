@@ -1,23 +1,25 @@
 import React, { Component } from "react";
-import GotService from "../../services/gotService.jsx";
 import Spinner from "../spinner/spinner.jsx";
 import "./itemList.scss"
 
 export default class ItemList extends Component {
 
-	gotService = new GotService();
-	state = { characterList: null };
+	state = { itemList: null };
 
 	componentDidMount() {
-		this.gotService.getAllCharacters()
-			.then((characterList) => {
-				this.setState({ characterList })
+		const { getData } = this.props;
+		getData()
+			// this.gotService.getAllCharacters()
+			.then((itemList) => {
+				this.setState({ itemList })
 			});
 	}
 
 	renderItemList(arr) {
 		return arr.map((item, index) => {
 			const { onCharSelected } = this.props;
+			const label = this.props.renderItem(item);
+
 			return (
 				<li
 					key={index}
@@ -25,7 +27,8 @@ export default class ItemList extends Component {
 					onClick={() => onCharSelected(41 + index)}>
 					<span
 						className="list-char__label list__label">
-						{item.name}
+						{label}
+						{/* {item.name} */}
 					</span>
 				</li>
 			)
@@ -33,13 +36,13 @@ export default class ItemList extends Component {
 	}
 
 	render() {
-		const { characterList } = this.state;
-		const itemList = !characterList ? <Spinner /> : this.renderItemList(characterList);
+		const { itemList } = this.state;
+		const itemsList = !itemList ? <Spinner /> : this.renderItemList(itemList);
 
 		return (
 			<section className="list-char list-char__section page__section">
 				<ul className="list-char__list list">
-					{itemList}
+					{itemsList}
 				</ul>
 			</section>
 		)
