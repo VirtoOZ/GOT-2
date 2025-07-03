@@ -2,6 +2,16 @@ import React, { Component } from "react";
 import GotService from "../../services/gotService.jsx";
 import ErrorMessage from "../errorMessage/errormessage.jsx";
 
+const Field = ({ character, field, label }) => {
+	return (
+		<li className="detales-char__title list__item">
+			<span className="detales-char__label list__label">{label}</span>
+			<span className="detales-char__value list__value">{character[field]}</span>
+		</li>
+	)
+};
+
+export { Field };
 
 export default class DetalesChar extends Component {
 	gotService = new GotService();
@@ -9,8 +19,6 @@ export default class DetalesChar extends Component {
 
 	componentDidMount() {
 		this.onUpdateChar();
-
-		// console.log(this.props.charId);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -31,6 +39,7 @@ export default class DetalesChar extends Component {
 
 	render() {
 		const { character } = this.state;
+
 		if (!character) {
 			return (
 				<section className="detales-char detales-char__section page__section">
@@ -40,30 +49,18 @@ export default class DetalesChar extends Component {
 				</section>
 			)
 		}
-		const { name, gender, born, died, culture } = this.state.character;
+
+		const { name } = character;
+
 		return (
 			<section className="detales-char detales-char__section page__section">
 				<ul className="detales-char__list list">
-					<li className="detales-char__title list__title">
-						<span className="detales-char__label list__label">Detales Character: {name}</span>
-						<span className="detales-char__value list__value"> (id:{this.props.charId})</span>
-					</li>
-					<li className="detales-char__item list__item">
-						<span className="detales-char__label list__label">Gender</span>
-						<span className="detales-char__value list__value">{gender}</span>
-					</li>
-					<li className="detales-char__item list__item">
-						<span className="detales-char__label list__label">Born</span>
-						<span className="detales-char__value list__value">{born}</span>
-					</li>
-					<li className="detales-char__item list__item">
-						<span className="detales-char__label list__label">Died</span>
-						<span className="detales-char__value list__value">{died}</span>
-					</li>
-					<li className="detales-char__item list__item">
-						<span className="detales-char__label list__label">Culture</span>
-						<span className="detales-char__value list__value">{culture}</span>
-					</li>
+					<h2 className="list__title">{name}</h2>
+					{
+						React.Children.map(this.props.children, (child) => {
+							return React.cloneElement(child, { character })
+						})
+					}
 				</ul>
 			</section>
 		)

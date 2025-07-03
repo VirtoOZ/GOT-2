@@ -9,6 +9,17 @@ import DetalesChar from "../detalesChar/detalesChar.jsx";
 import ItemList from "../itemList/itemList.jsx";
 import GotService from "../../services/gotService.jsx";
 
+
+const SectionBox = ({ children }) => {
+	return (
+		<div className="section__box">
+			<div className="section__container">
+				{children}
+			</div>
+		</div>
+	)
+};
+
 export default class App extends Component {
 
 	gotService = new GotService();
@@ -17,11 +28,19 @@ export default class App extends Component {
 		onHide: false,
 		selectedChar: 130,
 		error: false,
+		onData: "character",
 	};
 
 	componentDidCatch() {
 		// console.log('error');
 		this.setState({ error: true });
+	}
+
+	onSelectData() {
+		const { onData } = this.state;
+		if (onData === 'book') {
+			return
+		}
 	}
 
 	render() {
@@ -40,40 +59,30 @@ export default class App extends Component {
 						<div className="section__container">
 							<button
 								className="togle__btn"
-								onClick={() => this.setState({ onHide: !onHide })}
-							>Togle</button>
+								onClick={() => this.setState({ onHide: !onHide })}>
+								Togle
+							</button>
 						</div>
 					</div>
-					<div className="section__box">
-						<div className="section__container">
-							<CharacterPage />
-						</div>
-					</div>
-					<div className="section__box">
-						<div className="section__container">
-							<ItemList
-								onCharSelected={this.onCharSelected}
-								getData={this.gotService.getAllBooks}
-								renderItem={(item) => item.name}
-
-							/>
-							<DetalesChar
-								charId={this.state.selectedChar}
-							/>
-						</div>
-					</div>
-					<div className="section__box">
-						<div className="section__container">
-							<ItemList
-								onCharSelected={this.onCharSelected}
-								getData={this.gotService.getAllHouses}
-								renderItem={(item) => item.name}
-							/>
-							<DetalesChar
-								charId={this.state.selectedChar}
-							/>
-						</div>
-					</div>
+					<SectionBox>
+						<CharacterPage onData={onData} />
+					</SectionBox>
+					<SectionBox>
+						<ItemList
+							onItemSelected={this.onItemSelected}
+							getData={this.gotService.getAllBooks}
+							renderItem={(item) => item.name} />
+						<DetalesChar
+							charId={this.state.selectedChar} />
+					</SectionBox>
+					<SectionBox>
+						<ItemList
+							onItemSelected={this.onItemSelected}
+							getData={this.gotService.getAllHouses}
+							renderItem={(item) => item.name} />
+						<DetalesChar
+							charId={this.state.selectedChar} />
+					</SectionBox>
 					<div className="page__bg">
 						<img src={img} alt="bg"></img>
 					</div>

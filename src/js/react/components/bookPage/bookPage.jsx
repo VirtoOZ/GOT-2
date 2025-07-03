@@ -6,20 +6,13 @@ import DetalesChar, { Field } from "../detalesChar/detalesChar.jsx";
 import ItemList from "../itemList/itemList.jsx";
 import RowBlock from "../rowBlock/rowBlock.jsx";
 
-export default class CharacterPage extends Component {
+export default class BookPage extends Component {
 	gotService = new GotService();
 
 	state = {
 		selectedChar: 130,
 		error: false,
-		// onCharacter: null,
-		// onBook: null,
-		// onHouse: null,
 	}
-
-	// componentDidMount() {
-	// 	this.onSelectData();
-	// }
 
 	componentDidCatch() {
 		this.setState({ error: true });
@@ -28,11 +21,6 @@ export default class CharacterPage extends Component {
 	onItemSelected = (id) => {
 		this.setState({ selectedChar: id })
 	};
-
-	// onSelectData() {
-	// 	const { data } = this.props.onData;
-	// 	console.log(data);
-	// }
 
 	render() {
 		if (this.state.error) {
@@ -43,16 +31,16 @@ export default class CharacterPage extends Component {
 		const itemList = (
 			<ItemList
 				onItemSelected={this.onItemSelected}
-				getData={this.gotService.getAllCharacters}
+				getData={this.gotService.getAllBooks}
 				renderItem={(item) => item.name} />
 		);
 
 		const detalesChar = (
 			<DetalesChar charId={selectedChar} >
-				<Field field='authors' label='Authors' />
-				<Field field='country' label='Country' />
-				<Field field='numberOfPages' label='NumberOfPages' />
-				<Field field='mediaType' label='MediaType' />
+				<Field field='gender' label='Gender' />
+				<Field field='born' label='Born' />
+				<Field field='died' label='Died' />
+				<Field field='culture' label='Culture' />
 			</DetalesChar>
 		);
 
