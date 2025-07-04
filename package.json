@@ -86,6 +86,7 @@
 		"isotope-layout": "^3.0.6",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-router-dom": "^7.6.3",
 		"sass": "^1.77.6",
 		"simplebar": "latest"
 	}

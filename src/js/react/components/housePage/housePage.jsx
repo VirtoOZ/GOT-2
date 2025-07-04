@@ -5,6 +5,7 @@ import ErrorMessage from "../errorMessage/errormessage.jsx";
 import DetalesItem, { Field } from "../detalesItem/detalesItem.jsx";
 import ItemList from "../itemList/itemList.jsx";
 import RowBlock from "../rowBlock/rowBlock.jsx";
+import SectionBox from "../sectionBox/sectionBox.jsx";
 
 export default class HousePage extends Component {
 	gotService = new GotService();
@@ -61,7 +62,9 @@ export default class HousePage extends Component {
 		);
 
 		return (
-			<RowBlock left={itemList} right={detalesItem} />
+			<SectionBox>
+				<RowBlock left={itemList} right={detalesItem} />
+			</SectionBox>
 		)
 	};
 }

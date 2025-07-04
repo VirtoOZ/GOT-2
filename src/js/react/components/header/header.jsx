@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './header.scss';
+import { Link } from "react-router";
 
 export default class Header extends Component {
 	state = {
@@ -12,7 +13,7 @@ export default class Header extends Component {
 				<div className="header__wrapper">
 					<div className="header__container">
 						<div className="header__body">
-							<div className="header__name">Game of Thrones DB</div>
+							<Link to='/' className="header__name">Game of Thrones DB</Link >
 							<div className="header__menu menu">
 								<button type="button" className="menu__icon icon-menu">
 									<span></span>
@@ -20,12 +21,23 @@ export default class Header extends Component {
 								<nav className="menu__body">
 									<ul className="menu__list">
 										<li className="menu__item">
-											<a href=""
+											<Link
 												className="menu__link"
-												onClick={() => this.setState}>Characters</a>
+												to='/characters'
+												onClick={() => null}>Characters</Link>
 										</li>
-										<li className="menu__item"><a href="" className="menu__link">Houses</a></li>
-										<li className="menu__item"><a href="" className="menu__link">Books</a></li>
+										<li className="menu__item">
+											<Link
+												className="menu__link"
+												to='/books'
+												onClick={() => null}>Books</Link>
+										</li>
+										<li className="menu__item">
+											<Link
+												className="menu__link"
+												to='/houses'
+												onClick={() => null}>Houses</Link>
+										</li>
 									</ul>
 								</nav>
 							</div>

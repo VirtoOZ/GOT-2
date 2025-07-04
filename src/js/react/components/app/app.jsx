@@ -8,17 +8,7 @@ import ErrorMessage from "../errorMessage/errormessage.jsx";
 import GotService from "../../services/gotService.jsx";
 import BookPage from "../bookPage/bookPage.jsx";
 import HousePage from "../housePage/housePage.jsx";
-
-
-const SectionBox = ({ children }) => {
-	return (
-		<div className="section__box">
-			<div className="section__container">
-				{children}
-			</div>
-		</div>
-	)
-};
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 
 export default class App extends Component {
 
@@ -32,16 +22,9 @@ export default class App extends Component {
 	};
 
 	componentDidCatch() {
-		// console.log('error');
+
 		this.setState({ error: true });
 	}
-
-	// onSelectData() {
-	// 	const { onData } = this.state;
-	// 	if (onData === 'book') {
-	// 		return
-	// 	}
-	// }
 
 	render() {
 		if (this.state.error) {
@@ -51,33 +34,31 @@ export default class App extends Component {
 		const randomBlock = onHide ? <></> : <RandChar />;
 
 		return (
-			<>
-				<Header />
-				<main className="page">
-					{randomBlock}
-					<div className="page__section">
-						<div className="section__container">
-							<button
-								className="togle__btn"
-								onClick={() => this.setState({ onHide: !onHide })}>
-								Togle
-							</button>
+			<Router>
+				<div className="app">
+					<Header />
+					<main className="page">
+						{randomBlock}
+						<div className="page__section">
+							<div className="section__container">
+								<button
+									className="togle__btn"
+									onClick={() => this.setState({ onHide: !onHide })}>
+									Togle
+								</button>
+							</div>
 						</div>
-					</div>
-					<SectionBox>
-						<CharacterPage />
-					</SectionBox>
-					<SectionBox>
-						<BookPage />
-					</SectionBox>
-					<SectionBox>
-						<HousePage />
-					</SectionBox>
-					<div className="page__bg">
-						<img src={img} alt="bg"></img>
-					</div>
-				</main>
-			</>
+						<Routes>
+							<Route path="/characters" element={<CharacterPage />} />
+							<Route path="/books" element={<BookPage />} />
+							<Route path="/houses" element={<HousePage />} />
+						</Routes>
+						<div className="page__bg">
+							<img src={img} alt="bg"></img>
+						</div>
+					</main>
+				</div>
+			</Router>
 		)
 	}
 }
