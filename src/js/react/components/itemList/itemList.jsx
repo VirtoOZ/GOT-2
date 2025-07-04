@@ -16,19 +16,20 @@ export default class ItemList extends Component {
 	}
 
 	renderItemList(arr) {
-		return arr.map((item, index) => {
+		return arr.map((item) => {
 			const { onItemSelected } = this.props;
-			const label = this.props.renderItem(item);
+			const label = item.name;
+			const id = +item.id;
+			// const label = this.props.renderItem(item);
 
 			return (
 				<li
-					key={index}
+					key={id}
 					className="list-char__item list__item"
-					onClick={() => onItemSelected(41 + index)}>
+					onClick={() => onItemSelected(id)}>
 					<span
 						className="list-char__label list__label">
 						{label}
-						{/* {item.name} */}
 					</span>
 				</li>
 			)

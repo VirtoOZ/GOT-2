@@ -1,46 +1,48 @@
 import React, { Component } from "react";
-import GotService from "../../services/gotService.jsx";
 import ErrorMessage from "../errorMessage/errormessage.jsx";
 
-const Field = ({ character, field, label }) => {
+const Field = ({ item, field, label }) => {
 	return (
 		<li className="detales-char__title list__item">
 			<span className="detales-char__label list__label">{label}</span>
-			<span className="detales-char__value list__value">{character[field]}</span>
+			<span className="detales-char__value list__value">{item[field]}</span>
 		</li>
 	)
 };
 
 export { Field };
 
-export default class DetalesChar extends Component {
-	gotService = new GotService();
-	state = { character: null };
+export default class DetalesItem extends Component {
+
+	state = { item: null };
 
 	componentDidMount() {
-		this.onUpdateChar();
+		this.onUpdateItem();
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.charId !== prevProps.charId) {
-			this.onUpdateChar();
+		if (this.props.itemId !== prevProps.itemId) {
+			this.onUpdateItem();
 		}
 	}
 
-	onUpdateChar() {
-		const { charId } = this.props;
-		if (!charId) {
+	onUpdateItem() {
+		const { itemId, getData } = this.props;
+
+		if (!itemId) {
 			return;
 		}
-		this.gotService.getCharacter(charId)
-			.then((character) => this.setState({ character }));
+		getData(itemId)
+			.then((item) => {
+				this.setState({ item });
+			});
 		// this.foo.bar = 0;
 	}
 
 	render() {
-		const { character } = this.state;
+		const { item } = this.state;
 
-		if (!character) {
+		if (!item) {
 			return (
 				<section className="detales-char detales-char__section page__section">
 					<div className="detales-char__list list">
@@ -50,7 +52,7 @@ export default class DetalesChar extends Component {
 			)
 		}
 
-		const { name } = character;
+		const { name } = item;
 
 		return (
 			<section className="detales-char detales-char__section page__section">
@@ -58,7 +60,7 @@ export default class DetalesChar extends Component {
 					<h2 className="list__title">{name}</h2>
 					{
 						React.Children.map(this.props.children, (child) => {
-							return React.cloneElement(child, { character })
+							return React.cloneElement(child, { item })
 						})
 					}
 				</ul>

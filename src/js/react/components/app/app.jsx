@@ -5,9 +5,9 @@ import CharacterPage from "../characterPage/characterPage.jsx";
 import './app.scss';
 import img from "./got.jpeg";
 import ErrorMessage from "../errorMessage/errormessage.jsx";
-import DetalesChar from "../detalesChar/detalesChar.jsx";
-import ItemList from "../itemList/itemList.jsx";
 import GotService from "../../services/gotService.jsx";
+import BookPage from "../bookPage/bookPage.jsx";
+import HousePage from "../housePage/housePage.jsx";
 
 
 const SectionBox = ({ children }) => {
@@ -36,12 +36,12 @@ export default class App extends Component {
 		this.setState({ error: true });
 	}
 
-	onSelectData() {
-		const { onData } = this.state;
-		if (onData === 'book') {
-			return
-		}
-	}
+	// onSelectData() {
+	// 	const { onData } = this.state;
+	// 	if (onData === 'book') {
+	// 		return
+	// 	}
+	// }
 
 	render() {
 		if (this.state.error) {
@@ -65,23 +65,13 @@ export default class App extends Component {
 						</div>
 					</div>
 					<SectionBox>
-						<CharacterPage onData={onData} />
+						<CharacterPage />
 					</SectionBox>
 					<SectionBox>
-						<ItemList
-							onItemSelected={this.onItemSelected}
-							getData={this.gotService.getAllBooks}
-							renderItem={(item) => item.name} />
-						<DetalesChar
-							charId={this.state.selectedChar} />
+						<BookPage />
 					</SectionBox>
 					<SectionBox>
-						<ItemList
-							onItemSelected={this.onItemSelected}
-							getData={this.gotService.getAllHouses}
-							renderItem={(item) => item.name} />
-						<DetalesChar
-							charId={this.state.selectedChar} />
+						<HousePage />
 					</SectionBox>
 					<div className="page__bg">
 						<img src={img} alt="bg"></img>

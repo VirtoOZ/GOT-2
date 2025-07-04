@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import GotService from "../../services/gotService.jsx";
 import Spinner from "../spinner/spinner.jsx";
 import ErrorMessage from "../errorMessage/errormessage.jsx";
-import DetalesChar, { Field } from "../detalesChar/detalesChar.jsx";
+import DetalesItem, { Field } from "../detalesItem/detalesItem.jsx";
 import ItemList from "../itemList/itemList.jsx";
 import RowBlock from "../rowBlock/rowBlock.jsx";
 
@@ -44,20 +44,24 @@ export default class CharacterPage extends Component {
 			<ItemList
 				onItemSelected={this.onItemSelected}
 				getData={this.gotService.getAllCharacters}
-				renderItem={(item) => item.name} />
+			// renderItem={(item) => item.name} 
+			/>
 		);
 
-		const detalesChar = (
-			<DetalesChar charId={selectedChar} >
-				<Field field='authors' label='Authors' />
-				<Field field='country' label='Country' />
-				<Field field='numberOfPages' label='NumberOfPages' />
-				<Field field='mediaType' label='MediaType' />
-			</DetalesChar>
+		const detalesItem = (
+			<DetalesItem
+				itemId={selectedChar}
+				getData={this.gotService.getCharacter}
+			>
+				<Field field='gender' label='Gender' />
+				<Field field='born' label='Born' />
+				<Field field='died' label='Died' />
+				<Field field='culture' label='Culture' />
+			</DetalesItem>
 		);
 
 		return (
-			<RowBlock left={itemList} right={detalesChar} />
+			<RowBlock left={itemList} right={detalesItem} />
 		)
 	};
 }

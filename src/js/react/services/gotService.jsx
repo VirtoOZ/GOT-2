@@ -14,7 +14,7 @@ export default class GotService {
 	// Персонажи:
 	getCharacter = async (id) => {
 		const char = await this.getResurce(`${this._ApiBase}/characters/${id}`);
-		return this._transformCharacter(char, id);
+		return this._transformCharacter(char);
 	}
 
 	getAllCharacters = async () => {
@@ -29,7 +29,7 @@ export default class GotService {
 	}
 
 	getAllBooks = async () => {
-		const books = await this.getResurce(`${this._ApiBase}/books?page=1&pageSize=10`);
+		const books = await this.getResurce(`${this._ApiBase}/books?=3&pageSize=10`);
 		return books.map(this._transformBook);
 	}
 
@@ -40,38 +40,43 @@ export default class GotService {
 	}
 
 	getAllHouses = async () => {
-		const houses = await this.getResurce(`${this._ApiBase}/houses?page=1&pageSize=10`);
+		const houses = await this.getResurce(`${this._ApiBase}/houses?page=5&pageSize=10`);
 		return houses.map(this._transformHouses);
 	}
 
+	getId = (item) => item.url.match(/\/([0-9]*)$/)[1];
 
-	_transformCharacter = (char, index) => {
+	isData = (data) => data ? data : 'no data';
+
+	_transformCharacter = (char) => {
 		return {
-			name: char.name ? char.name : 'no data',
-			gender: char.gender ? char.gender : 'no data',
-			born: char.born ? char.born : 'no data',
-			died: char.died ? char.died : 'no data',
-			culture: char.culture ? char.culture : 'no data',
-			id: index,
+			id: this.getId(char),
+			name: this.isData(char.name),
+			gender: this.isData(char.gender),
+			born: this.isData(char.born),
+			died: this.isData(char.died),
+			culture: this.isData(char.culture),
 		}
 	}
 
 	_transformBook = (book) => {
 		return {
-			name: book.name ? book.name : 'no data',
-			authors: book.authors ? book.authors : 'no data',
-			country: book.country ? book.country : 'no data',
-			numberOfPages: book.numberOfPages ? book.numberOfPages : 'no data',
-			mediaType: book.mediaType ? book.mediaType : 'no data',
+			id: this.getId(book),
+			name: this.isData(book.name),
+			authors: this.isData(book.authors),
+			country: this.isData(book.country),
+			numberOfPages: this.isData(book.numberOfPages),
+			mediaType: this.isData(book.mediaType),
 		}
 	}
 
 	_transformHouses = (house) => {
 		return {
-			name: house.name ? house.name : 'no data',
-			region: house.region ? house.region : 'no data',
-			words: house.words ? house.words : 'no data',
-			coatOfArms: house.coatOfArms ? house.coatOfArms : 'no data',
+			id: this.getId(house),
+			name: this.isData(house.name),
+			region: this.isData(house.region),
+			words: this.isData(house.words),
+			coatOfArms: this.isData(house.coatOfArms),
 		}
 	}
 
