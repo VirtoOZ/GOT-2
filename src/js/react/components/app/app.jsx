@@ -1,64 +1,71 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Header from "../header/header.jsx";
 import RandChar from "../randChar/randChar.jsx";
-import CharacterPage from "../characterPage/characterPage.jsx";
 import './app.scss';
 import img from "./got.jpeg";
 import ErrorMessage from "../errorMessage/errormessage.jsx";
 import GotService from "../../services/gotService.jsx";
-import BookPage from "../bookPage/bookPage.jsx";
-import HousePage from "../housePage/housePage.jsx";
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Routes, useParams } from "react-router";
+import { BookPage, HousePage, CharacterPage, BooksItem } from "../pages"
 
-export default class App extends Component {
+const App = () => {
+	const [onHide, setOnHide] = useState(false);
+	const [selectedChar, setSelectedChar] = useState(130);
+	const [error, setError] = useState(false);
+	const params = useParams();
 
-	gotService = new GotService();
+	const gotService = new GotService();
 
-	state = {
-		onHide: false,
-		selectedChar: 130,
-		error: false,
-		onData: "character",
-	};
+	// state = {
+	// 	onHide: false,
+	// 	selectedChar: 130,
+	// 	error: false,
+	// 	onData: "character",
+	// };
 
-	componentDidCatch() {
+	// componentDidCatch() {
+	// 	this.setState({ error: true });
+	// }
 
-		this.setState({ error: true });
+	// render() {
+	if (error) {
+		return <ErrorMessage />
 	}
+	// const { onHide } = this.state;
+	const randomBlock = onHide ? <></> : <RandChar />;
 
-	render() {
-		if (this.state.error) {
-			return <ErrorMessage />
-		}
-		const { onHide } = this.state;
-		const randomBlock = onHide ? <></> : <RandChar />;
 
-		return (
-			<Router>
-				<div className="app">
-					<Header />
-					<main className="page">
-						{randomBlock}
-						<div className="page__section">
-							<div className="section__container">
-								<button
-									className="togle__btn"
-									onClick={() => this.setState({ onHide: !onHide })}>
-									Togle
-								</button>
-							</div>
+	return (
+		<Router>
+			<div className="app">
+				<Header />
+				<main className="page">
+					{randomBlock}
+					<div className="page__section">
+						<div className="section__container">
+							<button
+								className="togle__btn"
+								onClick={() => setOnHide(!onHide)}>
+								Togle
+							</button>
 						</div>
-						<Routes>
-							<Route path="/characters" element={<CharacterPage />} />
-							<Route path="/books" element={<BookPage />} />
-							<Route path="/houses" element={<HousePage />} />
-						</Routes>
-						<div className="page__bg">
-							<img src={img} alt="bg"></img>
-						</div>
-					</main>
-				</div>
-			</Router>
-		)
-	}
+					</div>
+					<Routes>
+						<Route path="/" element={<CharacterPage />} />
+						<Route path="/characters" element={<CharacterPage />} />
+						<Route path="/houses" element={<HousePage />} />
+						<Route path="/books/" element={<BookPage />} />
+						<Route path="/books/:id" element={<BooksItem bookId={params.id} />} />
+					</Routes>
+					<div className="page__bg">
+						<img src={img} alt="bg"></img>
+					</div>
+				</main>
+			</div>
+		</Router>
+	)
+	// }
 }
+
+export default App;

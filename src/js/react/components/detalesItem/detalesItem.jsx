@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import ErrorMessage from "../errorMessage/errormessage.jsx";
 
 const Field = ({ item, field, label }) => {
@@ -12,59 +12,50 @@ const Field = ({ item, field, label }) => {
 
 export { Field };
 
-export default class DetalesItem extends Component {
+function DetalesItem({ itemId, getData, children }) {
+	const [item, setItem] = useState(itemId);
 
-	state = { item: null };
+	if (!itemId) {
+		return (
+			<section className="detales-char detales-char__section page__section">
+				<div className="detales-char__list list">
+					<span className="">Please select character</span>
+				</div>
+			</section>
+		)
+	};
 
-	componentDidMount() {
-		this.onUpdateItem();
-	}
-
-	componentDidUpdate(prevProps) {
-		if (this.props.itemId !== prevProps.itemId) {
-			this.onUpdateItem();
-		}
-	}
-
-	onUpdateItem() {
-		const { itemId, getData } = this.props;
-
+	function onUpdateItem() {
+		// console.log('update');
 		if (!itemId) {
 			return;
 		}
 		getData(itemId)
 			.then((item) => {
-				this.setState({ item });
+				setItem(item);
 			});
-		// this.foo.bar = 0;
 	}
 
-	render() {
-		const { item } = this.state;
+	// вместо componentDidMount
+	useEffect(() => {
+		onUpdateItem();
+	}, [itemId]);
 
-		if (!item) {
-			return (
-				<section className="detales-char detales-char__section page__section">
-					<div className="detales-char__list list">
-						<span className="">Please select character</span>
-					</div>
-				</section>
-			)
-		}
+	// this.foo.bar = 0;
 
-		const { name } = item;
+	// render() {
+	return (
+		<section className="detales-char detales-char__section page__section" >
+			<ul className="detales-char__list list">
+				<h2 className="list__title">{item.name}</h2>
+				{
+					React.Children.map(children, (child) => {
+						return React.cloneElement(child, { item })
+					})
+				}
+			</ul>
+		</section >
+	)
+};
 
-		return (
-			<section className="detales-char detales-char__section page__section">
-				<ul className="detales-char__list list">
-					<h2 className="list__title">{name}</h2>
-					{
-						React.Children.map(this.props.children, (child) => {
-							return React.cloneElement(child, { item })
-						})
-					}
-				</ul>
-			</section>
-		)
-	}
-}
+export default DetalesItem;
