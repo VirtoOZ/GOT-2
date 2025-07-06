@@ -53,8 +53,8 @@ const App = () => {
 					</div>
 					<Routes>
 						<Route path="/" element={<CharacterPage />} />
-						<Route path="/characters" element={<CharacterPage />} />
-						<Route path="/houses" element={<HousePage />} />
+						<Route path="/characters/" element={<CharacterPage />} />
+						<Route path="/houses/" element={<HousePage />} />
 						<Route path="/books/" element={<BookPage />} />
 						<Route path="/books/:id" element={<BooksItem bookId={params.id} />} />
 					</Routes>

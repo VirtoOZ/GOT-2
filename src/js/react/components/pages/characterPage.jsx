@@ -13,14 +13,7 @@ export default class CharacterPage extends Component {
 	state = {
 		selectedChar: 130,
 		error: false,
-		// onCharacter: null,
-		// onBook: null,
-		// onHouse: null,
 	}
-
-	// componentDidMount() {
-	// 	this.onSelectData();
-	// }
 
 	componentDidCatch() {
 		this.setState({ error: true });
@@ -29,11 +22,6 @@ export default class CharacterPage extends Component {
 	onItemSelected = (id) => {
 		this.setState({ selectedChar: id })
 	};
-
-	// onSelectData() {
-	// 	const { data } = this.props.onData;
-	// 	console.log(data);
-	// }
 
 	render() {
 		if (this.state.error) {
