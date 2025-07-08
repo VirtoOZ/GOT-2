@@ -1,26 +1,22 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Spinner from "../spinner/spinner.jsx";
 import "./itemList.scss"
 
-export default class ItemList extends Component {
+export default function ItemList({ getData, onItemSelected }) {
+	const [itemList, setItemList] = useState([]);
+	// state = { itemList: null };
 
-	state = { itemList: null };
-
-	componentDidMount() {
-		const { getData } = this.props;
+	useEffect(() => {
 		getData()
-			// this.gotService.getAllCharacters()
-			.then((itemList) => {
-				this.setState({ itemList })
+			.then((data) => {
+				setItemList(data)
 			});
-	}
+	}, []);
 
-	renderItemList(arr) {
+	function renderItemList(arr) {
 		return arr.map((item) => {
-			const { onItemSelected } = this.props;
 			const label = item.name;
 			const id = +item.id;
-			// const label = this.props.renderItem(item);
 
 			return (
 				<li
@@ -36,16 +32,13 @@ export default class ItemList extends Component {
 		})
 	}
 
-	render() {
-		const { itemList } = this.state;
-		const itemsList = !itemList ? <Spinner /> : this.renderItemList(itemList);
+	const items = !itemList ? <Spinner /> : renderItemList(itemList);
 
-		return (
-			<section className="list-char list-char__section page__section">
-				<ul className="list-char__list list">
-					{itemsList}
-				</ul>
-			</section>
-		)
-	}
+	return (
+		<section className="list-char list-char__section page__section">
+			<ul className="list-char__list list">
+				{items}
+			</ul>
+		</section>
+	)
 }
