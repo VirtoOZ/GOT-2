@@ -1,13 +1,10 @@
 import React from "react";
 import "./spinner.scss";
-import gif from "./spinner.gif";
 
-function Spinner() {
+export default function Spinner() {
 	return (
 		<div className="spinner">
-			<img src={gif} alt=""></img>
+			<img src="../../../../img/spinner/spinner.gif" alt="spinner"></img>
 		</div>
 	)
 }
-
-export default Spinner;

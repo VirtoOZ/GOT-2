@@ -7988,9 +7988,6 @@
         __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
         return module.exports;
     }
-    (() => {
-        __webpack_require__.p = "/";
-    })();
     var react = __webpack_require__(540);
     var client = __webpack_require__(338);
     __webpack_require__(69);
@@ -9913,22 +9910,19 @@
             coatOfArms: this.isData(house.coatOfArms)
         });
     }
-    const spinner = __webpack_require__.p + "src/js/react/components/spinner/spinner.gif";
     function Spinner() {
         return react.createElement("div", {
             className: "spinner"
         }, react.createElement("img", {
-            src: spinner,
-            alt: ""
+            src: "../../../../img/spinner/spinner.gif",
+            alt: "spinner"
         }));
     }
-    const spinner_spinner = Spinner;
-    const Daineris_Else = __webpack_require__.p + "src/js/react/components/errorMessage/Daineris-Else.jpg";
     function ErrorMessage() {
         return react.createElement(react.Fragment, null, react.createElement("img", {
             className: "wrong__image",
-            src: Daineris_Else,
-            alt: ""
+            src: "../../../../img/erroeMessage/Daineris-Else.jpg",
+            alt: "error-img"
         }), react.createElement("div", {
             className: "wrong__text"
         }, "Something goes wrong..."));
@@ -9971,7 +9965,7 @@
                 data,
                 id
             }) : null;
-            const spinner = loading ? react.createElement(spinner_spinner, null) : null;
+            const spinner = loading ? react.createElement(Spinner, null) : null;
             const errorMessage = error ? react.createElement(errormessage, null) : null;
             return react.createElement("section", {
                 className: "random-char random-char__section page__section"
@@ -10016,7 +10010,6 @@
             className: "random-char__value list__value"
         }, culture)));
     };
-    const got = __webpack_require__.p + "src/js/react/components/app/got.jpeg";
     function ItemList({getData, onItemSelected}) {
         const [itemList, setItemList] = (0, react.useState)([]);
         (0, react.useEffect)((() => {
@@ -10037,7 +10030,7 @@
                 }, label));
             }));
         }
-        const items = !itemList ? react.createElement(spinner_spinner, null) : renderItemList(itemList);
+        const items = !itemList ? react.createElement(Spinner, null) : renderItemList(itemList);
         return react.createElement("section", {
             className: "list-char list-char__section page__section"
         }, react.createElement("ul", {
@@ -10214,7 +10207,6 @@
     const booksItem = BooksItem;
     const App = () => {
         const [onHide, setOnHide] = (0, react.useState)(false);
-        const [selectedChar, setSelectedChar] = (0, react.useState)(130);
         const [error, setError] = (0, react.useState)(false);
         const params = useParams();
         new GotService;
@@ -10251,7 +10243,7 @@
         })), react.createElement("div", {
             className: "page__bg"
         }, react.createElement("img", {
-            src: got,
+            src: "../../../../img/app/got.jpeg",
             alt: "bg"
         })))));
     };

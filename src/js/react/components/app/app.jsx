@@ -1,8 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import Header from "../header/header.jsx";
 import RandChar from "../randChar/randChar.jsx";
 import './app.scss';
-import img from "./got.jpeg";
 import ErrorMessage from "../errorMessage/errormessage.jsx";
 import GotService from "../../services/gotService.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -11,7 +10,6 @@ import { BookPage, HousePage, CharacterPage, BooksItem } from "../pages"
 
 const App = () => {
 	const [onHide, setOnHide] = useState(false);
-	const [selectedChar, setSelectedChar] = useState(130);
 	const [error, setError] = useState(false);
 	const params = useParams();
 
@@ -46,7 +44,7 @@ const App = () => {
 						<Route path="/books/:id" element={<BooksItem bookId={params.id} />} />
 					</Routes>
 					<div className="page__bg">
-						<img src={img} alt="bg"></img>
+						<img src="../../../../img/app/got.jpeg" alt="bg"></img>
 					</div>
 				</main>
 			</div>
