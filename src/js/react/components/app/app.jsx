@@ -44,7 +44,7 @@ const App = () => {
 						<Route path="/books/:id" element={<BooksItem bookId={params.id} />} />
 					</Routes>
 					<div className="page__bg">
-						<img src="../../../../img/app/got.jpeg" alt="bg"></img>
+						<img src="@img/app/got.jpeg" alt="bg"></img>
 					</div>
 				</main>
 			</div>

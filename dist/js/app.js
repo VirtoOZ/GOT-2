@@ -7988,6 +7988,9 @@
         __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
         return module.exports;
     }
+    (() => {
+        __webpack_require__.p = "/";
+    })();
     var react = __webpack_require__(540);
     var client = __webpack_require__(338);
     __webpack_require__(69);
@@ -9910,18 +9913,19 @@
             coatOfArms: this.isData(house.coatOfArms)
         });
     }
+    const spinner = __webpack_require__.p + "src/img/spinner/spinner.gif";
     function Spinner() {
         return react.createElement("div", {
             className: "spinner"
         }, react.createElement("img", {
-            src: "../../../../img/spinner/spinner.webp",
+            src: spinner,
             alt: "spinner"
         }));
     }
     function ErrorMessage() {
         return react.createElement(react.Fragment, null, react.createElement("img", {
             className: "wrong__image",
-            src: "../../../../img/erroeMessage/Daineris-Else.jpg",
+            src: "@img/errorMessage/Daineris-Else.jpg",
             alt: "error-img"
         }), react.createElement("div", {
             className: "wrong__text"
@@ -10243,7 +10247,7 @@
         })), react.createElement("div", {
             className: "page__bg"
         }, react.createElement("img", {
-            src: "../../../../img/app/got.jpeg",
+            src: "@img/app/got.jpeg",
             alt: "bg"
         })))));
     };
