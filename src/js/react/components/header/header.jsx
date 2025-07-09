@@ -13,7 +13,7 @@ export default class Header extends Component {
 				<div className="header__wrapper">
 					<div className="header__container">
 						<div className="header__body">
-							<Link to='/' className="header__name">Game of Thrones DB</Link >
+							<Link to='/GOT-2/' className="header__name">Game of Thrones DB</Link >
 							<div className="header__menu menu">
 								<button type="button" className="menu__icon icon-menu">
 									<span></span>

@@ -37,7 +37,7 @@ const App = () => {
 						</div>
 					</div>
 					<Routes>
-						<Route path="/" element={<CharacterPage />} />
+						<Route path="/GOT-2/" element={<CharacterPage />} />
 						<Route path="/characters/" element={<CharacterPage />} />
 						<Route path="/houses/" element={<HousePage />} />
 						<Route path="/books/" element={<BookPage />} />

@@ -6,6 +6,8 @@ import ErrorMessage from "../errorMessage/errormessage.jsx";
 
 export default class RandChar extends Component {
 
+	gotService = new GotService();
+
 	state = {
 		data: {},
 		loading: true,
@@ -13,11 +15,9 @@ export default class RandChar extends Component {
 		id: null,
 	}
 
-	gotService = new GotService();
-
 	componentDidMount() {
 		this.updateCharacter();
-		// this.timerId = setInterval(this.updateCharacter, 4000);
+		this.timerId = setInterval(this.updateCharacter, 4000);
 	}
 
 	componentWillUnmount() {
@@ -25,12 +25,10 @@ export default class RandChar extends Component {
 	}
 
 	updateCharacter = () => {
-		// console.log('update');
 		const id = Math.floor(Math.random() * 140 + 25); //25-140
 		this.gotService.getCharacter(id)
 			.then(this.updateData)
 			.catch(this.onError);
-
 	}
 
 	updateData = (data) => {
@@ -73,7 +71,7 @@ export default class RandChar extends Component {
 	}
 }
 
-const View = ({ data, id },) => {
+const View = ({ data, id, },) => {
 	const { name, gender, born, died, culture } = data;
 	return (
 		<>

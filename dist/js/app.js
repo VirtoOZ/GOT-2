@@ -9817,7 +9817,7 @@
             }, react.createElement("div", {
                 className: "header__body"
             }, react.createElement(Link, {
-                to: "/",
+                to: "/GOT-2/",
                 className: "header__name"
             }, "Game of Thrones DB"), react.createElement("div", {
                 className: "header__menu menu"
@@ -9929,15 +9929,16 @@
     }
     const errormessage = ErrorMessage;
     class RandChar extends react.Component {
+        gotService=new GotService;
         state={
             data: {},
             loading: true,
             error: false,
             id: null
         };
-        gotService=new GotService;
         componentDidMount() {
             this.updateCharacter();
+            this.timerId = setInterval(this.updateCharacter, 4e3);
         }
         componentWillUnmount() {
             clearInterval(this.timerId);
@@ -10224,7 +10225,7 @@
             className: "togle__btn",
             onClick: () => setOnHide(!onHide)
         }, "Togle"))), react.createElement(Routes, null, react.createElement(Route, {
-            path: "/",
+            path: "/GOT-2/",
             element: react.createElement(CharacterPage, null)
         }), react.createElement(Route, {
             path: "/characters/",
