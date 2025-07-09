@@ -4,7 +4,7 @@ import "./spinner.scss";
 export default function Spinner() {
 	return (
 		<div className="spinner">
-			<img src="../../../../img/spinner/spinner.gif" alt="spinner"></img>
+			<img src="../../../../img/spinner/spinner.webp" alt="spinner"></img>
 		</div>
 	)
 }

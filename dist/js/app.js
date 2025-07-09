@@ -9914,7 +9914,7 @@
         return react.createElement("div", {
             className: "spinner"
         }, react.createElement("img", {
-            src: "../../../../img/spinner/spinner.gif",
+            src: "../../../../img/spinner/spinner.webp",
             alt: "spinner"
         }));
     }

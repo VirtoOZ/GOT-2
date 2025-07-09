@@ -23,6 +23,7 @@ export const WebP = () => {
 			)
 		)
 }
+
 export const imagesOptimize = () => {
 	return app.gulp.src(app.path.src.images, { encoding: false })
 		.pipe(app.plugins.plumber(
@@ -45,6 +46,7 @@ export const imagesOptimize = () => {
 		)
 		.pipe(app.gulp.dest(app.path.build.images))
 }
+
 export const copySvg = () => {
 	return app.gulp.src(app.path.src.svg)
 		.pipe(app.plugins.plumber(
