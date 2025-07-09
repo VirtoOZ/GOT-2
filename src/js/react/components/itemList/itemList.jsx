@@ -4,7 +4,6 @@ import "./itemList.scss"
 
 export default function ItemList({ getData, onItemSelected }) {
 	const [itemList, setItemList] = useState([]);
-	// state = { itemList: null };
 
 	useEffect(() => {
 		getData()

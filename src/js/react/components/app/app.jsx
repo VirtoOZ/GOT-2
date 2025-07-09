@@ -17,22 +17,9 @@ const App = () => {
 
 	const gotService = new GotService();
 
-	// state = {
-	// 	onHide: false,
-	// 	selectedChar: 130,
-	// 	error: false,
-	// 	onData: "character",
-	// };
-
-	// componentDidCatch() {
-	// 	this.setState({ error: true });
-	// }
-
-	// render() {
 	if (error) {
 		return <ErrorMessage />
 	}
-	// const { onHide } = this.state;
 	const randomBlock = onHide ? <></> : <RandChar />;
 
 
@@ -65,7 +52,6 @@ const App = () => {
 			</div>
 		</Router>
 	)
-	// }
 }
 
 export default App;

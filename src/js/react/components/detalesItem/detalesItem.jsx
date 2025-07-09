@@ -26,7 +26,6 @@ function DetalesItem({ itemId, getData, children }) {
 	};
 
 	function onUpdateItem() {
-		// console.log('update');
 		if (!itemId) {
 			return;
 		}
@@ -43,7 +42,6 @@ function DetalesItem({ itemId, getData, children }) {
 
 	// this.foo.bar = 0;
 
-	// render() {
 	return (
 		<section className="detales-char detales-char__section page__section" >
 			<ul className="detales-char__list list">

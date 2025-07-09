@@ -8,9 +8,7 @@ import { useNavigate } from "react-router";
 
 const BookPage = () => {
 	const gotService = new GotService();
-	// const [selectedBook, setSelectedBook] = useState(2);
 	const [error, setError] = useState(false);
-	// const [props, setError] = useState(false);
 	const navigate = useNavigate();
 
 	if (error) {
