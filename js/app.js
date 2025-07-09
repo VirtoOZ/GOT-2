@@ -7988,9 +7988,6 @@
         __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
         return module.exports;
     }
-    (() => {
-        __webpack_require__.p = "/";
-    })();
     var react = __webpack_require__(540);
     var client = __webpack_require__(338);
     __webpack_require__(69);
@@ -9913,12 +9910,11 @@
             coatOfArms: this.isData(house.coatOfArms)
         });
     }
-    const spinner = __webpack_require__.p + "src/img/spinner/spinner.gif";
     function Spinner() {
         return react.createElement("div", {
             className: "spinner"
         }, react.createElement("img", {
-            src: spinner,
+            src: "files/spinner/spinner.gif",
             alt: "spinner"
         }));
     }
