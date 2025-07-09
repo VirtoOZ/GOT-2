@@ -9925,7 +9925,7 @@
     function ErrorMessage() {
         return react.createElement(react.Fragment, null, react.createElement("img", {
             className: "wrong__image",
-            src: "@img/errorMessage/Daineris-Else.jpg",
+            src: "../../../../img/errorMessage/Daineris-Else.jpg",
             alt: "error-img"
         }), react.createElement("div", {
             className: "wrong__text"
@@ -10247,7 +10247,7 @@
         })), react.createElement("div", {
             className: "page__bg"
         }, react.createElement("img", {
-            src: "@img/app/got.jpeg",
+            src: "../../../../img/app/got.jpeg",
             alt: "bg"
         })))));
     };
