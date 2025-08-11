@@ -18,9 +18,7 @@ html {
   min-width: 320px
 }
 body {
-  color: #5e6282;
   line-height: 1;
-  font-family: PlusJakartaSans;
   font-size: 1rem;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -31,7 +29,6 @@ body {
 button,
 input,
 textarea {
-  font-family: PlusJakartaSans;
   font-size: inherit;
   line-height: inherit;
   color: inherit;
@@ -68,15 +65,8 @@ h6 {
 }
 body {
   background: #fafafa;
-  color: #5e6282;
   font-weight: 500;
   line-height: 187.5%
-}
-.lock body {
-  overflow: hidden;
-  touch-action: none;
-  -ms-scroll-chaining: none;
-  overscroll-behavior: none
 }
 .wrapper {
   position: relative;
@@ -293,8 +283,7 @@ body {
 }
 @media (max-width:39.99875em)and (any-hover:hover) {
   .icon-menu:hover span {
-    box-shadow: 0 0 5px #fff;
-    background-color: #4737ff
+    box-shadow: 0 0 5px #fff
   }
 }
 @media (any-hover:hover) {
